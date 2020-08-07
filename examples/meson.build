@@ -170,6 +170,11 @@ clients = {
 		'dep': wlroots,
 		'proto': ['wlr-virtual-pointer-unstable-v1'],
 	},
+	'virtual-kbd': {
+		'src': 'virtual-kbd.c',
+		'dep': wlroots,
+		'proto': ['virtual-keyboard-unstable-v1'],
+	},
 	'input-method-keyboard-grab': {
 		'src': 'input-method-keyboard-grab.c',
 		'dep': xkbcommon,
