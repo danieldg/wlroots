@@ -152,6 +152,8 @@ static const struct zwlr_screencopy_frame_v1_listener frame_listener = {
 static void handle_global(void *data, struct wl_registry *registry,
 		uint32_t name, const char *interface, uint32_t version) {
 	if (strcmp(interface, wl_output_interface.name) == 0 && output == NULL) {
+		char* nr = getenv("OUTPUT_NR");
+		if (!nr || (uint32_t)atoi(nr) == name)
 		output = wl_registry_bind(registry, name, &wl_output_interface, 1);
 	} else if (strcmp(interface, wl_shm_interface.name) == 0) {
 		shm = wl_registry_bind(registry, name, &wl_shm_interface, 1);
