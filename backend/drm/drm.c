@@ -366,7 +366,11 @@ static bool drm_crtc_page_flip(struct wlr_drm_connector *conn) {
 		return false;
 	}
 
-	assert(crtc->pending.active);
+	if (!crtc->pending.active) {
+		wlr_log(WLR_ERROR, "Assertion failure: '%s' is not active.", conn->output.name);
+		return false;
+	}
+
 	assert(plane_get_next_fb(crtc->primary)->type != WLR_DRM_FB_TYPE_NONE);
 	if (!drm_crtc_commit(conn, DRM_MODE_PAGE_FLIP_EVENT)) {
 		return false;
